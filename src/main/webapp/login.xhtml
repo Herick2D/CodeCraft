@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <style>
+        body {
+            background-color: #A9A9A9; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px; 
+        }
+
+ 
+        .form-border {
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="container">
+        <h2>CALMA LÁ</h2>
+
+        <div class="form-border">
+            <h:form>
+                <h:panelGroup>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Matrícula" for="matricula" />
+                        <p:inputText id="matricula" />
+                        
+                        <p:outputLabel value="Senha" for="senha" />
+                        <p:inputText id="senha" />
+                    </h:panelGrid>
+                </h:panelGroup>
+            </h:form>
+        </div>
+    </div>
+</h:body>
+</html>
