@@ -1,6 +1,7 @@
 package com.herick.repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -24,6 +25,11 @@ public class Alunos implements Serializable {
 	public void removerAluno(Aluno aluno) {
 		aluno = alunoPorId(aluno.getId());
 //		em.remove(aluno);
+	}
+	
+	public List<Aluno> todosOsAlunos() {
+		return em.createNativeQuery("SELECT * FROM alunos", Aluno.class).getResultList();
+		
 	}
 	
 }

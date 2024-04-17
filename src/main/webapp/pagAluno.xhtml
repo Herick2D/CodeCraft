@@ -15,6 +15,7 @@
 <body>
 <f:metadata>
 	<f:viewAction action="#{gestaoCodecraftBean.alunosById}" />
+	<f:viewAction action="#{gestaoCodecraftBean.todosAlunos}" />
 </f:metadata>
 
 
@@ -26,6 +27,25 @@
 	<div>
 		<h:outputText value="#{gestaoCodecraftBean.alunoEscolhido.nome}" />
 	</div>
-
+	
+	<p:dataTable value="#{gestaoCodecraftBean.pesquisaAlunos}" var="aluno" >
+    
+        <p:column headerText="Aluno: " >
+            <h:outputText value="#{aluno.nome}" />            
+        </p:column>
+        
+        <p:column headerText="Matricula" >
+            <h:outputText value="#{aluno.matricula}" />            
+        </p:column>
+        
+        <p:column headerText="Curso:" >
+            <p:dataTable value="#{aluno.cursos}" var="curso" >
+            	<p:column  >
+            		<h:outputText value="#{curso.nomeCurso}" />
+            	</p:column>
+            </p:dataTable>      
+        </p:column>
+                
+	   </p:dataTable>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.herick.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
@@ -20,6 +22,8 @@ public class GestaoCodecraftBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private List<Aluno> pesquisaAlunos = new ArrayList<>();
+	
 	private Alunos alunos = new Alunos();
 	
 	private Aluno alunoEscolhido = new Aluno();
@@ -32,8 +36,8 @@ public class GestaoCodecraftBean implements Serializable {
 	}
 	
 	
-	public Aluno todosAlunos() {
-		return null;
+	public void todosAlunos() {
+		setPesquisaAlunos(alunos.todosOsAlunos());
 	}
 
 	public void setAlunos(Alunos alunos) {
@@ -48,6 +52,16 @@ public class GestaoCodecraftBean implements Serializable {
 
 	public void setAlunoEscolhido(Aluno alunoEscolhido) {
 		this.alunoEscolhido = alunoEscolhido;
+	}
+
+
+	public List<Aluno> getPesquisaAlunos() {
+		return pesquisaAlunos;
+	}
+
+
+	public void setPesquisaAlunos(List<Aluno> pesquisaAlunos) {
+		this.pesquisaAlunos = pesquisaAlunos;
 	}
 	
 	
