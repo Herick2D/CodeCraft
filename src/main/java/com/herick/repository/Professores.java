@@ -2,8 +2,8 @@ package com.herick.repository;
 
 import java.io.Serializable;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 
 import com.herick.model.Professor;
 
@@ -11,24 +11,23 @@ public class Professores implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Inject
-	private EntityManager manager;
+	private EntityManager em;
 	
 	public Professores() {
-		
+		this.em = Persistence.createEntityManagerFactory("codecraftPU").createEntityManager();
 	}
 	
 	public Professores(EntityManager manager) {
-		this.manager = manager;
+		this.em = manager;
 	}
 	
 	public Professor professorPorId(Long id) {
-		return manager.find(Professor.class, id);
+		return em.find(Professor.class, id);
 	}
 	
 	public void removerProfessor(Professor professor) {
 		professor = professorPorId(professor.getId());
-		manager.remove(professor);
+		em.remove(professor);
 	}
 	
 }
