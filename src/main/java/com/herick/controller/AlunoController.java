@@ -27,13 +27,13 @@ public class AlunoController implements Serializable {
     private Aluno alunoEscolhido = new Aluno();
     private Cursos cursos = new Cursos();
     private Curso cursoSelecionado;
-    private List<Curso> allcursos = new ArrayList<>();
 
     public static final Logger LOGGER = Logger.getLogger(AlunoController.class.getName());
 
     public Aluno alunosById() {
-        allcursos.add(cursos.byId(1l));
-        allcursos.add(cursos.byId(2l));
+        listaCursos.add(cursos.byId(1l));
+        listaCursos.add(cursos.byId(2l));
+        listaCursos.add(cursos.byId(7l));
         alunoEscolhido = alunos.alunoPorId(1L);
         return alunoEscolhido;
     }
@@ -77,14 +77,6 @@ public class AlunoController implements Serializable {
 
     public void setCursoSelecionado(Curso cursoSelecionado) {
         this.cursoSelecionado = cursoSelecionado;
-    }
-
-    public List<Curso> getAllcursos() {
-        return allcursos;
-    }
-
-    public void setAllcursos(List<Curso> allcursos) {
-        this.allcursos = allcursos;
     }
 }
 

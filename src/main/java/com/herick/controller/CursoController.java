@@ -6,7 +6,9 @@ import com.herick.repository.Cursos;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+
 import java.io.Serializable;
+import java.util.List;
 
 @Named
 @ViewScoped
@@ -21,10 +23,9 @@ public class CursoController implements Serializable {
 	private Curso cursoFounded = new Curso();
 
 
-	public Curso todosCursos() {
-		cursoSample = cursos.byId(1L);
-		return cursoSample;
-	}
+    public List<Curso> todosCursos() {
+        return cursos.findAllCurso();
+    }
 
 	public void createCurso() {
 		cursos.save(cursoToCreate);

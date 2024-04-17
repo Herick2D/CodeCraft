@@ -66,7 +66,7 @@
                 <h:outputLabel value="" />
 				<p:selectOneMenu value="#{alunoController.cursoSelecionado}">
 				    <f:selectItem itemLabel="Selecione um curso..." itemValue="" />
-				    <f:selectItems value="#{alunoController.allcursos}" var="curso" itemLabel="#{curso.nomeCurso}" itemValue="#{alunoController.cursoSelecionado}" />
+				    <f:selectItems value="#{alunoController.listaCursos}" var="curso" itemLabel="#{curso.nomeCurso}" itemValue="#{alunoController.cursoSelecionado}" />
 				</p:selectOneMenu>
 
                 <p:commandButton value="Salvar Aluno" action="#{bean.salvarAluno}" />

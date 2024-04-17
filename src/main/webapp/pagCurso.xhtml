@@ -14,18 +14,32 @@
 </head>
 <body>
 <f:metadata>
-	<f:viewAction action="#{gestaoCodecraftBean.alunosById}" />
+	<f:viewAction action="#{alunoController.alunosById}" />
 </f:metadata>
 
 
 	<H2>Cursos</H2>
 	<h:form>
-		<h:commandLink value="Voltar" action="pagHome?faces-redirect=true" />
+		<h:commandLink value="Voltar" action="pagHome" />
 	</h:form>
 	
-	<div>
-		<h:outputText value="#{gestaoCodecraftBean.alunoEscolhido.nome}" />
-	</div>
+<div class="datatable">
+    <p:dataTable value="#{cursoController.todosCursos()}" var="curso">
+        <p:column headerText="Nome">
+            <h:outputText value="#{curso.nomeCurso}" />
+        </p:column>
+        <p:column headerText="Professor">
+            <h:outputText value="#{curso.professor}" />
+        </p:column>
+        <p:column headerText="Alunos">
+            <p:dataTable value="#{curso.alunos}" var="aluno">
+                <p:column headerText="Nome">
+                    <h:outputText value="#{aluno.nome}" />
+                </p:column>
+			</p:dataTable>
+        </p:column>
+        </p:dataTable>
+    </div>
 
 </body>
 </html>
