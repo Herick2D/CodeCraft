@@ -50,11 +50,6 @@ public class GestaoCodecraftBean implements Serializable {
 		this.alunoEscolhido = alunoEscolhido;
 	}
 	
-	public void console() {
-		LOGGER.info("AQUI, EU TO AQUIIIIIIII ############################ Matricula: " + alunoEscolhido.getMatricula());
-	}
-	
-	
 	
 }
 
