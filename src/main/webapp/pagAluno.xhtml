@@ -13,6 +13,10 @@
 
 </head>
 <h:body>
+    <f:metadata>
+        <f:viewAction action="#{alunoController.alunosById}" />
+        <f:viewAction action="#{alunoController.todosAlunos}" />
+    </f:metadata>
     <h:form>
         <p:panel header="Formulário de Cadastro de Aluno">
             <h:panelGrid columns="2">
@@ -22,8 +26,8 @@
                 <h:outputLabel for="matricula" value="Matrícula do Aluno:" />
                 <p:inputText id="matricula" value="#{alunoController.alunoEscolhido.matricula}" required="true" />
 
-				<p:outputLabel value="Selecionar curso:" for="cursos" /> 
-				<p:selectOneMenu id="cursos" value="#{alunoController.cursoSelecionado}">
+				<h:outputLabel />
+				<p:selectOneMenu >
 				    <f:selectItem itemLabel="Selecione um curso..." itemValue="" />
 				    <f:selectItems value="#{alunoController.listaCursos}" var="curso" itemLabel="#{curso.nomeCurso}" itemValue="#{alunoController.cursoSelecionado}" />
 				</p:selectOneMenu>
@@ -33,17 +37,13 @@
         </p:panel>
     </h:form>
 
-    <f:metadata>
-        <f:viewAction action="#{alunoController.alunosById}" />
-        <f:viewAction action="#{alunoController.todosAlunos}" />
-    </f:metadata>
-
     <H2>Alunos</H2>
     <h:form>
-        <h:commandLink value="Voltar" action="pagHome?faces-redirect=true" />
+        <h:commandLink value="Home" action="pagHome?faces-redirect=true" />
     </h:form>
 
     <p:dataTable value="#{alunoController.pesquisaAlunos}" var="aluno">
+    
         <p:column headerText="Aluno: ">
             <h:outputText value="#{aluno.nome}" />
         </p:column>
@@ -57,6 +57,7 @@
                 <p:column>
                     <h:outputText value="#{curso.nomeCurso}" />
                 </p:column>
+                
             </p:dataTable>
         </p:column>
     </p:dataTable>

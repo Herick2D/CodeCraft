@@ -6,7 +6,10 @@ import com.herick.repository.Professores;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Named
 @ViewScoped
@@ -15,6 +18,7 @@ public class ProfessorController implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private List<Professor> pesquisaProfessor = new ArrayList<>();
 	private Professores professores = new Professores();
 	private Professor professorSample = new Professor();
 	private Professor professorToCreate = new Professor();
@@ -37,6 +41,14 @@ public class ProfessorController implements Serializable {
 	
 	public void deleteProfessor(Long id) {
 		professores.deleteById(id);
+	}
+
+	public List<Professor> getPesquisaProfessor() {
+		return pesquisaProfessor;
+	}
+
+	public void setPesquisaProfessor(List<Professor> pesquisaProfessor) {
+		this.pesquisaProfessor = pesquisaProfessor;
 	}
 	
 	

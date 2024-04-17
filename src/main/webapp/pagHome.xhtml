@@ -3,31 +3,60 @@
  	xmlns:h="http://xmlns.jcp.org/jsf/html"
  	xmlns:f="http://xmlns.jcp.org/jsf/core"
  	xmlns:p="http://primefaces.org/ui">
-    
 <head>
+    <meta charset="UTF-8"/>
+    <title>pagHome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
 
-<meta charset="UTF-8"/>
+        h2 {
+            text-align: center;
+        }
 
+        h:form {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-<title>pagHome</title>
+        h:commandLink {
+            display: block;
+            margin: 10px auto;
+            width: 150px;
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 
+        h:commandLink:hover {
+            background-color: #0056b3;
+        }
+
+        div {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <f:metadata>
-	<f:viewAction action="#{alunoController.alunosById}" />
+    <f:viewAction action="#{alunoController.alunosById}" />
 </f:metadata>
 
+<h2>OLÁ HOME</h2>
+<h:form>
+    <h:commandLink value="Alunos" action="#{navigationConfig.navAlunos}" />
+    <h:commandLink value="Professores" action="#{navigationConfig.navProfessores}" />
+    <h:commandLink value="Cursos" action="#{navigationConfig.navCursos}" />
+</h:form>
 
-	<H2>OLÁ HOME</H2>
-	<h:form>
-		<h:commandLink value="Alunos" action="#{navigationConfig.navAlunos}" />
-		<h:commandLink value="Professores" action="#{navigationConfig.navProfessores}" />
-		<h:commandLink value="Cursos" action="#{navigationConfig.navCursos}" />
-	</h:form>
-	
-	<div>
-		<h:outputText value="#{alunoController.alunoEscolhido.nome}" />
-	</div>
+<div>
+    <h:outputText value="#{alunoController.alunoEscolhido.nome}" />
+</div>
 
 </body>
 </html>
