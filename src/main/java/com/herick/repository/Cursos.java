@@ -15,9 +15,6 @@ public class Cursos implements Serializable {
 
 	public static final Logger log = Logger.getLogger(Cursos.class.getName());
 	private static final long serialVersionUID = 1L;
-	
-	private List<Curso> cursos;
-	
 	private EntityManager em;
 	
 	public Cursos() {
@@ -38,7 +35,7 @@ public class Cursos implements Serializable {
 		log.info(String.format("Curso: %s. DELETADO!", curso.getNomeCurso()));
 	}
 	
-    public List<Curso> findAllCurso() {
+    public List<Curso> todosOsCursos() {
         TypedQuery<Curso> query = em.createQuery("SELECT c FROM Curso c", Curso.class);
         return query.getResultList();
     }

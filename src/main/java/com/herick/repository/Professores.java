@@ -1,6 +1,7 @@
 package com.herick.repository;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
@@ -12,7 +13,6 @@ public class Professores implements Serializable {
 
 	public static final Logger log = Logger.getLogger(Professores.class.getName());
 	private static final long serialVersionUID = 1L;
-	
 	private EntityManager em;
 	
 	public Professores() {
@@ -31,6 +31,10 @@ public class Professores implements Serializable {
 		Professor professor = byId(id);
 		em.remove(professor);
 		log.info(String.format("Professor: %s. DELETADO!", professor.getNomeProfessor()));
+	}
+
+	public List<Professores> todosProfessores() {
+		return em.createNativeQuery("SELECT * FROM Professores", Professor.class).getResultList();
 	}
 
 }

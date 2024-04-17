@@ -34,7 +34,7 @@ public class AlunoController implements Serializable {
         listaCursos.add(cursos.byId(1l));
         listaCursos.add(cursos.byId(2l));
         listaCursos.add(cursos.byId(7l));
-        alunoEscolhido = alunos.alunoPorId(1L);
+        alunoEscolhido = alunos.byId(1L);
         return alunoEscolhido;
     }
 

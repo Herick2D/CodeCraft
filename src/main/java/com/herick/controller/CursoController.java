@@ -24,7 +24,7 @@ public class CursoController implements Serializable {
 
 
     public List<Curso> todosCursos() {
-        return cursos.findAllCurso();
+        return cursos.todosOsCursos();
     }
 
 	public void createCurso() {
