@@ -12,6 +12,7 @@ import javax.inject.Named;
 import com.herick.model.Aluno;
 import com.herick.model.Curso;
 import com.herick.repository.Alunos;
+import com.herick.repository.Cursos;
 
 @Named
 @ViewScoped
@@ -24,11 +25,15 @@ public class AlunoController implements Serializable {
     private List<Curso> listaCursos = new ArrayList<>();
     private Alunos alunos = new Alunos();
     private Aluno alunoEscolhido = new Aluno();
+    private Cursos cursos = new Cursos();
     private Curso cursoSelecionado;
+    private List<Curso> allcursos = new ArrayList<>();
 
     public static final Logger LOGGER = Logger.getLogger(AlunoController.class.getName());
 
     public Aluno alunosById() {
+        allcursos.add(cursos.byId(1l));
+        allcursos.add(cursos.byId(2l));
         alunoEscolhido = alunos.alunoPorId(1L);
         return alunoEscolhido;
     }
@@ -72,6 +77,14 @@ public class AlunoController implements Serializable {
 
     public void setCursoSelecionado(Curso cursoSelecionado) {
         this.cursoSelecionado = cursoSelecionado;
+    }
+
+    public List<Curso> getAllcursos() {
+        return allcursos;
+    }
+
+    public void setAllcursos(List<Curso> allcursos) {
+        this.allcursos = allcursos;
     }
 }
 

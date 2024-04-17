@@ -10,7 +10,44 @@
 
 
 <title>pagAluno</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
 
+        h2 {
+            text-align: center;
+        }
+
+        h:form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h:commandLink {
+            display: block;
+            margin: 10px auto;
+            width: 150px;
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        h:commandLink:hover {
+            background-color: #0056b3;
+        }
+
+        div {
+            text-align: center;
+            margin-top: 20px;
+        }
+        div.ui-helper-hidden-accessible > input {
+            display: none;
+        }
+    </style>
 </head>
 <h:body>
     <f:metadata>
@@ -26,10 +63,10 @@
                 <h:outputLabel for="matricula" value="Matrícula do Aluno:" />
                 <p:inputText id="matricula" value="#{alunoController.alunoEscolhido.matricula}" required="true" />
 
-				<h:outputLabel />
-				<p:selectOneMenu >
+                <h:outputLabel value="" />
+				<p:selectOneMenu value="#{alunoController.cursoSelecionado}">
 				    <f:selectItem itemLabel="Selecione um curso..." itemValue="" />
-				    <f:selectItems value="#{alunoController.listaCursos}" var="curso" itemLabel="#{curso.nomeCurso}" itemValue="#{alunoController.cursoSelecionado}" />
+				    <f:selectItems value="#{alunoController.allcursos}" var="curso" itemLabel="#{curso.nomeCurso}" itemValue="#{alunoController.cursoSelecionado}" />
 				</p:selectOneMenu>
 
                 <p:commandButton value="Salvar Aluno" action="#{bean.salvarAluno}" />
@@ -37,9 +74,9 @@
         </p:panel>
     </h:form>
 
-    <H2>Alunos</H2>
+    <h2>Alunos</h2>
     <h:form>
-        <h:commandLink value="Home" action="pagHome?faces-redirect=true" />
+        <h:commandLink value="Home" action="pagHome" />
     </h:form>
 
     <p:dataTable value="#{alunoController.pesquisaAlunos}" var="aluno">
