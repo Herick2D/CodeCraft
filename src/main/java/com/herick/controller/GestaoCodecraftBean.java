@@ -20,16 +20,14 @@ public class GestaoCodecraftBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Inject
-	private Alunos alunos;
+	private Alunos alunos = new Alunos();
 	
 	private Aluno alunoEscolhido = new Aluno();
 	
 	public static final Logger LOGGER = Logger.getLogger(GestaoCodecraftBean.class.getName());
 	
 	public Aluno alunosById() {
-		EntityManager em = Persistence.createEntityManagerFactory("codecraftPU").createEntityManager();
-		alunoEscolhido = em.find(Aluno.class, 1L);
+		alunoEscolhido = alunos.alunoPorId(1L);
 		return alunoEscolhido;
 	}
 	
