@@ -19,6 +19,11 @@
 
 
 	<H2>OLÁ HOME</H2>
+	<h:form>
+		<h:commandLink value="Alunos" action="#{navigationConfig.navAlunos}" />
+		<h:commandLink value="Professores" action="#{navigationConfig.navProfessores}" />
+		<h:commandLink value="Cursos" action="#{navigationConfig.navCursos}" />
+	</h:form>
 	
 	<div>
 		<h:outputText value="#{gestaoCodecraftBean.alunoEscolhido.nome}" />
