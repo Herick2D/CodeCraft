@@ -12,40 +12,54 @@
 <title>pagAluno</title>
 
 </head>
-<body>
-<f:metadata>
-	<f:viewAction action="#{gestaoCodecraftBean.alunosById}" />
-	<f:viewAction action="#{gestaoCodecraftBean.todosAlunos}" />
-</f:metadata>
+<h:body>
+    <h:form>
+        <p:panel header="Formulário de Cadastro de Aluno">
+            <h:panelGrid columns="2">
+                <h:outputLabel for="nome" value="Nome do Aluno:" />
+                <p:inputText id="nome" value="#{alunoController.alunoEscolhido.nome}" required="true" />
 
+                <h:outputLabel for="matricula" value="Matrícula do Aluno:" />
+                <p:inputText id="matricula" value="#{alunoController.alunoEscolhido.matricula}" required="true" />
 
-	<H2>Alunos</H2>
-	<h:form>
-		<h:commandLink value="Voltar" action="pagHome?faces-redirect=true" />
-	</h:form>
+				<p:outputLabel value="Selecionar curso:" for="cursos" /> 
+				<p:selectOneMenu id="cursos" value="#{alunoController.cursoSelecionado}">
+				    <f:selectItem itemLabel="Selecione um curso..." itemValue="" />
+				    <f:selectItems value="#{alunoController.listaCursos}" var="curso" itemLabel="#{curso.nomeCurso}" itemValue="#{alunoController.cursoSelecionado}" />
+				</p:selectOneMenu>
 
-	<div>
-		<h:outputText value="#{gestaoCodecraftBean.alunoEscolhido.nome}" />
-	</div>
-	
-	<p:dataTable value="#{gestaoCodecraftBean.pesquisaAlunos}" var="aluno" >
-    
-        <p:column headerText="Aluno: " >
-            <h:outputText value="#{aluno.nome}" />            
+                <p:commandButton value="Salvar Aluno" action="#{bean.salvarAluno}" />
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+
+    <f:metadata>
+        <f:viewAction action="#{alunoController.alunosById}" />
+        <f:viewAction action="#{alunoController.todosAlunos}" />
+    </f:metadata>
+
+    <H2>Alunos</H2>
+    <h:form>
+        <h:commandLink value="Voltar" action="pagHome?faces-redirect=true" />
+    </h:form>
+
+    <p:dataTable value="#{alunoController.pesquisaAlunos}" var="aluno">
+        <p:column headerText="Aluno: ">
+            <h:outputText value="#{aluno.nome}" />
         </p:column>
-        
-        <p:column headerText="Matricula" >
-            <h:outputText value="#{aluno.matricula}" />            
+
+        <p:column headerText="Matricula">
+            <h:outputText value="#{aluno.matricula}" />
         </p:column>
-        
-        <p:column headerText="Curso:" >
-            <p:dataTable value="#{aluno.cursos}" var="curso" >
-            	<p:column  >
-            		<h:outputText value="#{curso.nomeCurso}" />
-            	</p:column>
-            </p:dataTable>      
+
+        <p:column headerText="Curso:">
+            <p:dataTable value="#{aluno.cursos}" var="curso">
+                <p:column>
+                    <h:outputText value="#{curso.nomeCurso}" />
+                </p:column>
+            </p:dataTable>
         </p:column>
-                
-	   </p:dataTable>
-</body>
+    </p:dataTable>
+</h:body>
+
 </html>

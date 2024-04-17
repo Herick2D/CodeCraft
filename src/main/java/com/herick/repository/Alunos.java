@@ -24,9 +24,10 @@ public class Alunos implements Serializable {
 	
 	public void removerAluno(Aluno aluno) {
 		aluno = alunoPorId(aluno.getId());
-//		em.remove(aluno);
+		em.remove(aluno);
 	}
 	
+	@SuppressWarnings("unchecked") // coloquei supress pq não faço ideia de como resolver esse warning, e a resolução automática é meme
 	public List<Aluno> todosOsAlunos() {
 		return em.createNativeQuery("SELECT * FROM alunos", Aluno.class).getResultList();
 		
