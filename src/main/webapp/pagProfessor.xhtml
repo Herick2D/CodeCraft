@@ -20,8 +20,11 @@
             <div class="input-label">Matrícula do Professor:</div>
             <p:inputText id="matriculaProfessor" value="#{bean.professor.matriculaProfessor}" required="true" styleClass="input-field" />
 
-            <div class="input-label">Curso do Professor:</div>
-            <p:inputText id="cursoProfessor" value="#{bean.cursoProfessor}" styleClass="input-field" />
+			<h:outputLabel />
+				<p:selectOneMenu >
+				    <f:selectItem itemLabel="Selecione um curso..." itemValue="" />
+				    <f:selectItems value="#{professorController.listaCursos}" var="curso" itemLabel="#{curso.nomeCurso}" itemValue="#{professorController.cursoSelecionado}" />
+				</p:selectOneMenu>
 
             <p:commandButton value="Salvar Professor" action="#{bean.salvarProfessor}" styleClass="button" />
         </div>
@@ -34,16 +37,21 @@
     <h2>Professores</h2>
     
     <div class="datatable">
-        <p:dataTable value="#{professorController.class}" var="professor">
+        <p:dataTable value="#{professorController.pesquisaProfessor}" var="professor">
             <p:column headerText="Nome">
                 <h:outputText value="#{professor.nomeProfessor}" />
             </p:column>
             <p:column headerText="Matrícula">
                 <h:outputText value="#{professor.matriculaProfessor}" />
             </p:column>
-            <p:column headerText="Curso">
-                <h:outputText value="#{professor.curso.nomeCurso}" />
-            </p:column>
+            
+        <p:column headerText="Curso:">
+            <p:dataTable value="#{cursoController.cursos}" var="curso">
+                <p:column>
+                    <h:outputText value="#{curso.nomeCurso}" />
+                </p:column>
+			</p:dataTable>
+        </p:column>
         </p:dataTable>
     </div>
     

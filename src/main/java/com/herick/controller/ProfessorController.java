@@ -1,5 +1,6 @@
 package com.herick.controller;
 
+import com.herick.model.Curso;
 import com.herick.model.Professor;
 import com.herick.repository.Professores;
 
@@ -19,10 +20,12 @@ public class ProfessorController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private List<Professor> pesquisaProfessor = new ArrayList<>();
+    private List<Curso> listaCursos = new ArrayList<>();
 	private Professores professores = new Professores();
 	private Professor professorSample = new Professor();
 	private Professor professorToCreate = new Professor();
 	private Professor professorFounded = new Professor();
+	private Curso cursoSelecionado;
 	
 	
 	public Professor todosProfessores() {
@@ -49,6 +52,22 @@ public class ProfessorController implements Serializable {
 
 	public void setPesquisaProfessor(List<Professor> pesquisaProfessor) {
 		this.pesquisaProfessor = pesquisaProfessor;
+	}
+
+	public List<Curso> getListaCursos() {
+		return listaCursos;
+	}
+
+	public void setListaCursos(List<Curso> listaCursos) {
+		this.listaCursos = listaCursos;
+	}
+
+	public Curso getCursoSelecionado() {
+		return cursoSelecionado;
+	}
+
+	public void setCursoSelecionado(Curso cursoSelecionado) {
+		this.cursoSelecionado = cursoSelecionado;
 	}
 	
 	
