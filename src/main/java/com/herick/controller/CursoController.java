@@ -2,6 +2,7 @@ package com.herick.controller;
 
 import com.herick.model.Curso;
 import com.herick.repository.Cursos;
+import com.herick.util.Transacional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
@@ -23,19 +24,23 @@ public class CursoController implements Serializable {
 	private Curso cursoFounded = new Curso();
 
 
+	@Transacional
     public List<Curso> todosCursos() {
         return cursos.todosOsCursos();
     }
 
+	@Transacional
 	public void createCurso() {
 		cursos.save(cursoToCreate);
 	}
 
+	@Transacional
 	public Curso getCursoById(Long id) {
 		cursoFounded = cursos.byId(id);
 		return cursoFounded;
 	}
 
+	@Transacional
 	public void deleteCurso(Long id) {
 		cursos.deleteById(id);
 	}

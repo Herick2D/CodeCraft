@@ -20,20 +20,23 @@ public class Alunos implements Serializable {
 		this.em = Persistence.createEntityManagerFactory("codecraftPU").createEntityManager();
 	}
 
-	@Transacional
+
 	public void save(Aluno aluno) {
+		em.getTransaction().begin();
 		em.persist(aluno);
+		em.getTransaction().commit();
 	}
 
 	@Transacional
 	public Aluno byId(Long id) {
 		return em.find(Aluno.class, id);
 	}
-	
-	@Transacional
+
 	public void deleteById(Long id) {
+		em.getTransaction().begin();
 		Aluno aluno = byId(id);
 		em.remove(aluno);
+		em.getTransaction().commit();
 		log.info(String.format("Aluno: %s. DELETADO!", aluno.getNome()));
 	}
 	

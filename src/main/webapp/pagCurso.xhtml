@@ -18,13 +18,13 @@
 </f:metadata>
 
 
-	<H2>Cursos</H2>
+	<h2>Cursos</h2>
 	<h:form>
 		<h:commandLink value="Voltar" action="pagHome" />
 	</h:form>
 	
 <div class="datatable">
-    <p:dataTable value="#{cursoController.todosCursos()}" var="curso">
+    <p:dataTable value="#{cursoController.todosCursos}" var="curso">
         <p:column headerText="Nome">
             <h:outputText value="#{curso.nomeCurso}" />
         </p:column>

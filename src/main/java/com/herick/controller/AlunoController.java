@@ -8,11 +8,14 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 
 import com.herick.model.Aluno;
 import com.herick.model.Curso;
 import com.herick.repository.Alunos;
 import com.herick.repository.Cursos;
+import com.herick.util.Transacional;
 
 @Named
 @ViewScoped
@@ -25,21 +28,27 @@ public class AlunoController implements Serializable {
     private List<Curso> listaCursos = new ArrayList<>();
     private Alunos alunos = new Alunos();
     private Aluno alunoEscolhido = new Aluno();
+    private Aluno alunoToCreate = new Aluno();
     private Cursos cursos = new Cursos();
     private Curso cursoSelecionado;
+    private EntityManager entityManager = Persistence.createEntityManagerFactory("codecraftPU").createEntityManager();
 
     public static final Logger LOGGER = Logger.getLogger(AlunoController.class.getName());
 
-    public Aluno alunosById() {
-        listaCursos.add(cursos.byId(1l));
-        listaCursos.add(cursos.byId(2l));
-        listaCursos.add(cursos.byId(7l));
-        alunoEscolhido = alunos.byId(1L);
-        return alunoEscolhido;
+    @Transacional
+    public void preRender() {
+        setListaCursos(cursos.todosOsCursos());
+        setPesquisaAlunos(alunos.todosOsAlunos());
     }
 
-    public void todosAlunos() {
-        setPesquisaAlunos(alunos.todosOsAlunos());
+    public void createAluno() {
+        alunoToCreate.getCursos().add(cursoSelecionado);
+        alunos.save(alunoToCreate);
+    }
+
+    @Transacional
+    public void deleteById() {
+        alunos.deleteById(pesquisaAlunos.get(0).getId());
     }
 
     public void setAlunos(Alunos alunos) {
@@ -77,6 +86,14 @@ public class AlunoController implements Serializable {
 
     public void setCursoSelecionado(Curso cursoSelecionado) {
         this.cursoSelecionado = cursoSelecionado;
+    }
+
+    public Aluno getAlunoToCreate() {
+        return alunoToCreate;
+    }
+
+    public void setAlunoToCreate(Aluno alunoToCreate) {
+        this.alunoToCreate = alunoToCreate;
     }
 }
 

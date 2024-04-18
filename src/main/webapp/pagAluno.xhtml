@@ -51,17 +51,16 @@
 </head>
 <h:body>
     <f:metadata>
-        <f:viewAction action="#{alunoController.alunosById}" />
-        <f:viewAction action="#{alunoController.todosAlunos}" />
+        <f:viewAction action="#{alunoController.preRender}" />
     </f:metadata>
     <h:form>
         <p:panel header="Formulário de Cadastro de Aluno">
             <h:panelGrid columns="2">
                 <h:outputLabel for="nome" value="Nome do Aluno:" />
-                <p:inputText id="nome" value="#{alunoController.alunoEscolhido.nome}" required="true" />
+                <p:inputText id="nome" value="#{alunoController.alunoToCreate.nome}" required="true" />
 
                 <h:outputLabel for="matricula" value="Matrícula do Aluno:" />
-                <p:inputText id="matricula" value="#{alunoController.alunoEscolhido.matricula}" required="true" />
+                <p:inputText id="matricula" value="#{alunoController.alunoToCreate.matricula}" required="true" />
 
                 <h:outputLabel value="" />
 				<p:selectOneMenu value="#{alunoController.cursoSelecionado}">
@@ -69,7 +68,7 @@
 				    <f:selectItems value="#{alunoController.listaCursos}" var="curso" itemLabel="#{curso.nomeCurso}" itemValue="#{alunoController.cursoSelecionado}" />
 				</p:selectOneMenu>
 
-                <p:commandButton value="Salvar Aluno" action="#{bean.salvarAluno}" />
+                <p:commandButton value="Salvar Aluno" actionListener="#{alunoController.createAluno}" update="@form" />
             </h:panelGrid>
         </p:panel>
     </h:form>
@@ -79,7 +78,7 @@
         <h:commandLink value="Home" action="pagHome" />
     </h:form>
 
-    <p:dataTable value="#{alunoController.pesquisaAlunos}" var="aluno">
+    <p:dataTable value="#{alunoController.pesquisaAlunos}" var="aluno" >
     
         <p:column headerText="Aluno: ">
             <h:outputText value="#{aluno.nome}" />
@@ -96,6 +95,10 @@
                 </p:column>
                 
             </p:dataTable>
+        </p:column>
+        <p:column headerText="Ações">
+            <h:button value="Excluir" action="#{alunoController.deleteById}" />
+            <h:button value="Editar" action="#{alunoController.deleteById}" />
         </p:column>
     </p:dataTable>
 </h:body>
