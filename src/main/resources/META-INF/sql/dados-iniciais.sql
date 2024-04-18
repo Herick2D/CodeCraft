@@ -4,7 +4,7 @@ INSERT INTO codecraft.alunos (nome_aluno, matricula_aluno) VALUES ('João Silva'
 INSERT INTO codecraft.alunos (nome_aluno, matricula_aluno) VALUES ('Maria Souza', 0004);
 INSERT INTO codecraft.alunos (nome_aluno, matricula_aluno) VALUES ('Pedro Oliveira', 0005);
 INSERT INTO codecraft.alunos (nome_aluno, matricula_aluno) VALUES ('Ana Santos', 0006);
-INSERT INTO codecraft.alunos (nome_aluno, matricula_aluno) VALUES ('Carlos Ferreira', 0007);
+INSERT INTO codecraft.alunos (nome_aluno, matricula_aluno) VALUES ('Carlos Henrique Varejão', 0007);
 
 INSERT INTO codecraft.professores (nome_professor, matricula_professor) VALUES ('Vinicius do Java', 12345);
 INSERT INTO codecraft.professores (nome_professor, matricula_professor) VALUES ('Monique do Kotlin', 54321);

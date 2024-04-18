@@ -1,54 +1,14 @@
-<!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
- 	xmlns:h="http://xmlns.jcp.org/jsf/html"
- 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+ 	xmlns:h="http://java.sun.com/jsf/html"
+ 	xmlns:f="http://java.sun.com/jsf/core"
  	xmlns:p="http://primefaces.org/ui">
     
-<head>
-
-<meta charset="UTF-8"/>
-
-
+<h:head>
 <title>pagAluno</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
 
-        h2 {
-            text-align: center;
-        }
-
-        h:form {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        h:commandLink {
-            display: block;
-            margin: 10px auto;
-            width: 150px;
-            text-align: center;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        h:commandLink:hover {
-            background-color: #0056b3;
-        }
-
-        div {
-            text-align: center;
-            margin-top: 20px;
-        }
-        div.ui-helper-hidden-accessible > input {
-            display: none;
-        }
-    </style>
-</head>
+</h:head>
 <h:body>
     <f:metadata>
         <f:viewAction action="#{alunoController.preRender}" />
@@ -62,7 +22,6 @@
                 <h:outputLabel for="matricula" value="Matrícula do Aluno:" />
                 <p:inputText id="matricula" value="#{alunoController.alunoToCreate.matricula}" required="true" />
 
-                <h:outputLabel value="" />
 				<p:selectOneMenu value="#{alunoController.cursoSelecionado}">
 				    <f:selectItem itemLabel="Selecione um curso..." itemValue="" />
 				    <f:selectItems value="#{alunoController.listaCursos}" var="curso" itemLabel="#{curso.nomeCurso}" itemValue="#{alunoController.cursoSelecionado}" />

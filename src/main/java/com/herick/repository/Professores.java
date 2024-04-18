@@ -12,34 +12,39 @@ import com.herick.util.Transacional;
 
 public class Professores implements Serializable {
 
-	public static final Logger log = Logger.getLogger(Professores.class.getName());
-	private static final long serialVersionUID = 1L;
-	private EntityManager em;
-	
-	public Professores() {
-		this.em = Persistence.createEntityManagerFactory("codecraftPU").createEntityManager();
-	}
+    public static final Logger log = Logger.getLogger(Professores.class.getName());
+    private static final long serialVersionUID = 1L;
+    private EntityManager em;
+    
+    public Professores() {
+        this.em = Persistence.createEntityManagerFactory("codecraftPU").createEntityManager();
+    }
 
-	@Transacional
-	public Professor byId(Long id) {
-		return em.find(Professor.class, id);
-	}
+    @Transacional
+    public Professor byId(Long id) {
+        return em.find(Professor.class, id);
+    }
 
-	@Transacional
-	public void save(Professor professor) {
-		em.persist(professor);
-	}
+    @Transacional
+    public void save(Professor professor) {
+        em.getTransaction().begin();
+        em.persist(professor);
+        em.getTransaction().commit();
+    }
 
-	@Transacional
-	public void deleteById(Long id) {
-		Professor professor = byId(id);
-		em.remove(professor);
-		log.info(String.format("Professor: %s. DELETADO!", professor.getNomeProfessor()));
-	}
+    @Transacional
+    public void deleteById(Long id) {
+        em.getTransaction().begin();
+        Professor professor = byId(id);
+        em.remove(professor);
+        em.getTransaction().commit();
+        log.info(String.format("Professor: %s. DELETADO!", professor.getNomeProfessor()));
+    }
 
-	@Transacional
-	public List<Professores> todosProfessores() {
-		return em.createNativeQuery("SELECT * FROM Professores", Professor.class).getResultList();
-	}
-
+    @Transacional
+    @SuppressWarnings("unchecked")
+    public List<Professor> todosProfessores() {
+        return em.createNativeQuery("SELECT * FROM Professores", Professor.class).getResultList();
+    }
 }
+

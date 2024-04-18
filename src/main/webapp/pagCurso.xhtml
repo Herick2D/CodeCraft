@@ -4,42 +4,35 @@
  	xmlns:f="http://xmlns.jcp.org/jsf/core"
  	xmlns:p="http://primefaces.org/ui">
     
-<head>
-
-<meta charset="UTF-8"/>
-
+<h:head>
 
 <title>pagCurso</title>
 
-</head>
+</h:head>
 <body>
 <f:metadata>
-	<f:viewAction action="#{alunoController.alunosById}" />
+	<f:viewAction action="#{alunoController.preRender}" />
 </f:metadata>
-
-
 	<h2>Cursos</h2>
 	<h:form>
 		<h:commandLink value="Voltar" action="pagHome" />
 	</h:form>
-	
-<div class="datatable">
-    <p:dataTable value="#{cursoController.todosCursos}" var="curso">
-        <p:column headerText="Nome">
-            <h:outputText value="#{curso.nomeCurso}" />
-        </p:column>
-        <p:column headerText="Professor">
-            <h:outputText value="#{curso.professor}" />
-        </p:column>
-        <p:column headerText="Alunos">
-            <p:dataTable value="#{curso.alunos}" var="aluno">
-                <p:column headerText="Nome">
-                    <h:outputText value="#{aluno.nome}" />
-                </p:column>
-			</p:dataTable>
-        </p:column>
-        </p:dataTable>
-    </div>
-
+	<div class="datatable">
+	    <p:dataTable value="#{cursoController.todosCursos}" var="curso">	
+	        <p:column headerText="Nome">
+	            <h:outputText value="#{curso.nomeCurso}" />
+	        </p:column>
+	        <p:column headerText="Professor">
+	            <h:outputText value="#{curso.professor}" />
+	        </p:column>
+	        <p:column headerText="Alunos">
+	            <p:dataTable value="#{curso.alunos}" var="aluno">
+	                <p:column headerText="Nome">
+	                    <h:outputText value="#{aluno.nome}" />
+	                </p:column>
+	            </p:dataTable>
+	        </p:column>
+	    </p:dataTable>
+	</div>
 </body>
 </html>

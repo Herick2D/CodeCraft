@@ -6,15 +6,14 @@ import com.herick.repository.Professores;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+import javax.inject.Inject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named
-@ViewScoped
 @ManagedBean
+@ViewScoped
 public class ProfessorController implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -27,14 +26,27 @@ public class ProfessorController implements Serializable {
 	private Professor professorFounded = new Professor();
 	private Curso cursoSelecionado;
 	
+	@Inject
+	private Professor testeProfessor;
 	
+	
+	public Professor getTesteProfessor() {
+		return testeProfessor;
+	}
+
+	public void setTesteProfessor(Professor testeProfessor) {
+		this.testeProfessor = testeProfessor;
+	}
+
 	public Professor todosProfessores() {
 		professorSample = professores.byId(1L);
 		return professorSample;
 	}
 
 	public void createProfessor() {
-		professores.save(professorToCreate);
+		System.out.println(testeProfessor.getNomeProfessor());
+		System.out.println(testeProfessor.getMatriculaProfessor());
+//		professores.save(professorToCreate);
 	}
 
 	public Professor getProfessorById(Long id) {

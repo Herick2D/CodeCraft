@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
@@ -17,9 +16,8 @@ import com.herick.repository.Alunos;
 import com.herick.repository.Cursos;
 import com.herick.util.Transacional;
 
-@Named
-@ViewScoped
 @ManagedBean
+@ViewScoped
 public class AlunoController implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -95,6 +93,14 @@ public class AlunoController implements Serializable {
     public void setAlunoToCreate(Aluno alunoToCreate) {
         this.alunoToCreate = alunoToCreate;
     }
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 }
 
 
