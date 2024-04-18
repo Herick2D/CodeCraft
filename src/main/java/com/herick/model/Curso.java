@@ -1,7 +1,9 @@
 package com.herick.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,12 +34,9 @@ public class Curso implements Serializable {
 	
 	@OneToOne
 	private Professor professor;
-	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) 
-	@JoinTable(name = "curso_aluno",
-		joinColumns = @JoinColumn(name = "curso_id"),
-		inverseJoinColumns = @JoinColumn(name = "aluno_id"))
-	private List<Aluno> alunos;
+
+	@ManyToMany(mappedBy = "cursos")
+	private Set<Aluno> alunos = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -63,13 +62,11 @@ public class Curso implements Serializable {
 		this.professor = professor;
 	}
 
-	public List<Aluno> getAlunos() {
+	public Set<Aluno> getAlunos() {
 		return alunos;
 	}
 
-	public void setAlunos(List<Aluno> alunos) {
+	public void setAlunos(Set<Aluno> alunos) {
 		this.alunos = alunos;
 	}
-	
-
 }

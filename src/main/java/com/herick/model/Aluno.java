@@ -1,71 +1,67 @@
 package com.herick.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "alunos")
 public class Aluno implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name = "nome_aluno")
-	private String nome;
-	
-	@Column(name = "matricula_aluno")
-	private Long matricula;
-	
-	@ManyToMany(mappedBy = "alunos")
-	private List<Curso> cursos;
-	
-	
-	public Aluno() {
-		super();
-	}
+    private static final long serialVersionUID = 1L;
 
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(name = "nome_aluno")
+    private String nome;
 
-	public String getNome() {
-		return nome;
-	}
+    @Column(name = "matricula_aluno")
+    private Long matricula;
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "curso_aluno",
+            joinColumns = @JoinColumn(name = "aluno_id"),
+            inverseJoinColumns = @JoinColumn(name = "curso_id"))
+    private Set<Curso> cursos = new HashSet<>();
 
-	public Long getMatricula() {
-		return matricula;
-	}
+    public Aluno() {
+        super();
+    }
 
-	public void setMatricula(Long matricula) {
-		this.matricula = matricula;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public List<Curso> getCursos() {
-		return cursos;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setCursos(List<Curso> cursos) {
-		this.cursos = cursos;
-	}
-	
-	
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Long getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Long matricula) {
+        this.matricula = matricula;
+    }
+
+    public Set<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(Set<Curso> cursos) {
+        this.cursos = cursos;
+    }
 }
