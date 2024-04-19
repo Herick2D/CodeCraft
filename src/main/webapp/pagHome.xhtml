@@ -1,63 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
- 	xmlns:h="http://xmlns.jcp.org/jsf/html"
- 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+ 	xmlns:h="http://java.sun.com/jsf/html"
+ 	xmlns:f="http://java.sun.com/jsf/core"
  	xmlns:p="http://primefaces.org/ui">
-<head>
-    <meta charset="UTF-8"/>
+<h:head>
     <title>pagHome</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
 
-        h2 {
-            text-align: center;
-        }
-
-        h:form {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        h:commandLink {
-            display: block;
-            margin: 10px auto;
-            width: 150px;
-            text-align: center;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        h:commandLink:hover {
-            background-color: #0056b3;
-        }
-
-        div {
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
+</h:head>
+<h:body>
 <f:metadata>
     <f:viewAction action="#{alunoController.preRender}" />
 </f:metadata>
 
 <h2>OLÁ HOME</h2>
+
 <h:form>
-    <h:commandLink value="Alunos" action="#{navigationConfig.navAlunos}" />
-    <h:commandLink value="Professores" action="#{navigationConfig.navProfessores}" />
-    <h:commandLink value="Cursos" action="#{navigationConfig.navCursos}" />
+<p:growl id="messages" showDetail="true"/>
+ <p:toolbarGroup align="right">
+     <p:menuButton icon="pi pi-bars" value="Explorar">
+	     <p:menuitem value="Alunos" url="http://localhost:8080/CodeCraft/pagAluno.xhtml" icon="pi pi-users"/>
+	     <p:menuitem value="Professores" url="http://localhost:8080/CodeCraft/pagProfessor.xhtml" icon="pi pi-id-card"/>
+	     <p:menuitem value="Cursos" url="http://localhost:8080/CodeCraft/pagAluno.xhtml" icon="pi pi-book"/>
+     </p:menuButton>
+ </p:toolbarGroup>
 </h:form>
-
-<div>
-    <h:outputText value="#{alunoController.alunoEscolhido.nome}" />
-</div>
-
-</body>
+</h:body>
 </html>

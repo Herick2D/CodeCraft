@@ -6,13 +6,18 @@
  	xmlns:p="http://primefaces.org/ui">
     
 <h:head>
-<title>pagAluno</title>
+<title>Alunos</title>
 
 </h:head>
 <h:body>
     <f:metadata>
         <f:viewAction action="#{alunoController.preRender}" />
     </f:metadata>
+    <p:toolbar>
+    	<p:toolbarGroup>	
+	    	<p:commandButton type="button" action="pagHome" icon="pi pi-home" />
+    	</p:toolbarGroup>
+    </p:toolbar>
     <h:form>
         <p:panel header="Formulário de Cadastro de Aluno">
             <h:panelGrid columns="2">
@@ -29,13 +34,11 @@
 
                 <p:commandButton value="Salvar Aluno" actionListener="#{alunoController.createAluno}" update="@form" />
             </h:panelGrid>
-        </p:panel>
+        </p:panel>        
     </h:form>
 
     <h2>Alunos</h2>
-    <h:form>
-        <h:commandLink value="Home" action="pagHome" />
-    </h:form>
+   
 
     <p:dataTable value="#{alunoController.pesquisaAlunos}" var="aluno" >
     
@@ -56,8 +59,8 @@
             </p:dataTable>
         </p:column>
         <p:column headerText="Ações">
-            <h:button value="Excluir" action="#{alunoController.deleteById}" />
-            <h:button value="Editar" action="#{alunoController.deleteById}" />
+            <p:commandButton type="button" title="Excluir" icon="pi pi-user-minus" styleClass="ui-button-danger" action="#{alunoController.deleteById}"/>
+            <p:commandButton type="button" title="Print" icon="pi pi-user-edit" styleClass="ui-button-warning mr-2" action="#{alunoController.deleteById}"/>
         </p:column>
     </p:dataTable>
 </h:body>
