@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
@@ -17,7 +17,7 @@ import lombok.extern.java.Log;
 
 @Log
 @ManagedBean(name = "CURSOS")
-@RequestScoped
+@SessionScoped
 public class Cursos implements Serializable {
 
     private static final long serialVersionUID = 1L;

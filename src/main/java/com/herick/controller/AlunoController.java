@@ -3,10 +3,11 @@ package com.herick.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import com.herick.model.Aluno;
 import com.herick.model.Curso;
@@ -16,7 +17,7 @@ import lombok.extern.java.Log;
 
 @Log
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class AlunoController implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,20 +30,26 @@ public class AlunoController implements Serializable {
 
     private List<Aluno> pesquisaAlunos = new ArrayList<>();
     private List<Curso> listaCursos = new ArrayList<>();
+    private List<String> listaCursosNomes = new ArrayList<>();
 
     private Aluno alunoEscolhido = new Aluno();
     private Aluno alunoToCreate = new Aluno();
     private Curso cursoSelecionado = new Curso();
-
+    private String cursoSelecionadoNome = "";
 
     public void preRender() {
         setListaCursos(cursos.todosOsCursos());
+        setListaCursosNomes(listaCursos.stream().map(c -> c.getNomeCurso()).collect(Collectors.toList()));
         setPesquisaAlunos(alunos.todosOsAlunos());
         log.info("[CODECRAFT - ALUNO PAGE] Configs pre-render inicializadas!");
     }
 
     public void createAluno() {
         log.info("[CODECRAFT - ALUNO PAGE] Create Aluno...");
+        cursoSelecionado = listaCursos.stream()
+                .filter(c -> c.getNomeCurso().toUpperCase()
+                        .contains(cursoSelecionadoNome.toUpperCase()))
+                .findFirst().get();
         alunoToCreate.getCursos().add(cursoSelecionado);
         alunos.save(alunoToCreate);
     }
@@ -106,6 +113,22 @@ public class AlunoController implements Serializable {
 
     public void setCursoSelecionado(Curso cursoSelecionado) {
         this.cursoSelecionado = cursoSelecionado;
+    }
+
+    public String getCursoSelecionadoNome() {
+        return cursoSelecionadoNome;
+    }
+
+    public void setCursoSelecionadoNome(String cursoSelecionadoNome) {
+        this.cursoSelecionadoNome = cursoSelecionadoNome;
+    }
+
+    public List<String> getListaCursosNomes() {
+        return listaCursosNomes;
+    }
+
+    public void setListaCursosNomes(List<String> listaCursosNomes) {
+        this.listaCursosNomes = listaCursosNomes;
     }
 }
 
