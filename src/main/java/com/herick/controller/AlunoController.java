@@ -3,62 +3,69 @@ package com.herick.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import com.herick.model.Aluno;
 import com.herick.model.Curso;
 import com.herick.repository.Alunos;
 import com.herick.repository.Cursos;
-import com.herick.util.Transacional;
+import lombok.extern.java.Log;
 
+@Log
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class AlunoController implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ManagedProperty(value = "#{ALUNOS}")
+    private Alunos alunos;
+
+    @ManagedProperty(value = "#{CURSOS}")
+    private Cursos cursos;
+
     private List<Aluno> pesquisaAlunos = new ArrayList<>();
     private List<Curso> listaCursos = new ArrayList<>();
-    private Alunos alunos = new Alunos();
+
     private Aluno alunoEscolhido = new Aluno();
     private Aluno alunoToCreate = new Aluno();
-    private Cursos cursos = new Cursos();
-    private Curso cursoSelecionado;
-    private EntityManager entityManager = Persistence.createEntityManagerFactory("codecraftPU").createEntityManager();
+    private Curso cursoSelecionado = new Curso();
 
-    public static final Logger LOGGER = Logger.getLogger(AlunoController.class.getName());
 
-    @Transacional
     public void preRender() {
         setListaCursos(cursos.todosOsCursos());
         setPesquisaAlunos(alunos.todosOsAlunos());
+        log.info("[CODECRAFT - ALUNO PAGE] Configs pre-render inicializadas!");
     }
 
     public void createAluno() {
+        log.info("[CODECRAFT - ALUNO PAGE] Create Aluno...");
         alunoToCreate.getCursos().add(cursoSelecionado);
         alunos.save(alunoToCreate);
     }
 
-    @Transacional
     public void deleteById() {
         alunos.deleteById(pesquisaAlunos.get(0).getId());
+    }
+
+    /****************      GETTER E SETTER       ************************/
+    public Alunos getAlunos() {
+        return alunos;
     }
 
     public void setAlunos(Alunos alunos) {
         this.alunos = alunos;
     }
 
-    public Aluno getAlunoEscolhido() {
-        return alunoEscolhido;
+    public Cursos getCursos() {
+        return cursos;
     }
 
-    public void setAlunoEscolhido(Aluno alunoEscolhido) {
-        this.alunoEscolhido = alunoEscolhido;
+    public void setCursos(Cursos cursos) {
+        this.cursos = cursos;
     }
 
     public List<Aluno> getPesquisaAlunos() {
@@ -77,13 +84,12 @@ public class AlunoController implements Serializable {
         this.listaCursos = listaCursos;
     }
 
-
-    public Curso getCursoSelecionado() {
-        return cursoSelecionado;
+    public Aluno getAlunoEscolhido() {
+        return alunoEscolhido;
     }
 
-    public void setCursoSelecionado(Curso cursoSelecionado) {
-        this.cursoSelecionado = cursoSelecionado;
+    public void setAlunoEscolhido(Aluno alunoEscolhido) {
+        this.alunoEscolhido = alunoEscolhido;
     }
 
     public Aluno getAlunoToCreate() {
@@ -94,13 +100,13 @@ public class AlunoController implements Serializable {
         this.alunoToCreate = alunoToCreate;
     }
 
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
+    public Curso getCursoSelecionado() {
+        return cursoSelecionado;
+    }
 
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+    public void setCursoSelecionado(Curso cursoSelecionado) {
+        this.cursoSelecionado = cursoSelecionado;
+    }
 }
 
 

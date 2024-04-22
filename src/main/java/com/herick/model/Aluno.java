@@ -2,7 +2,6 @@ package com.herick.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -23,7 +22,7 @@ public class Aluno implements Serializable {
     @Column(name = "matricula_aluno")
     private Long matricula;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "curso_aluno",
             joinColumns = @JoinColumn(name = "aluno_id"),
             inverseJoinColumns = @JoinColumn(name = "curso_id"))
@@ -33,6 +32,7 @@ public class Aluno implements Serializable {
         super();
     }
 
+    /****************      GETTER E SETTER       ************************/
     public Long getId() {
         return id;
     }

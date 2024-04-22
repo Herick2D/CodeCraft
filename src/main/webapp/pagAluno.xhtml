@@ -1,66 +1,75 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
- 	xmlns:h="http://java.sun.com/jsf/html"
- 	xmlns:f="http://java.sun.com/jsf/core"
- 	xmlns:p="http://primefaces.org/ui">
-    
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
 <h:head>
-<title>Alunos</title>
+    <title>Alunos</title>
 
 </h:head>
 <h:body>
     <f:metadata>
-        <f:viewAction action="#{alunoController.preRender}" />
+        <f:viewAction action="#{alunoController.preRender}"/>
     </f:metadata>
     <p:toolbar>
-    	<p:toolbarGroup>	
-	    	<p:commandButton type="button" action="pagHome" icon="pi pi-home" />
-    	</p:toolbarGroup>
+        <p:toolbarGroup>
+            <p:commandButton type="button" action="pagHome" icon="pi pi-home"/>
+        </p:toolbarGroup>
     </p:toolbar>
     <h:form>
-        <p:panel header="Formulário de Cadastro de Aluno">
-            <h:panelGrid columns="2">
-                <h:outputLabel for="nome" value="Nome do Aluno:" />
-                <p:inputText id="nome" value="#{alunoController.alunoToCreate.nome}" required="true" />
+        <h:panelGrid id="panel" columns="2">
+            <h:outputLabel for="nome" value="Nome do Aluno:"/>
+            <h:inputText id="nome" value="#{alunoController.alunoToCreate.nome}" required="true"/>
 
-                <h:outputLabel for="matricula" value="Matrícula do Aluno:" />
-                <p:inputText id="matricula" value="#{alunoController.alunoToCreate.matricula}" required="true" />
+            <h:outputLabel for="matricula" value="Matrícula do Aluno:"/>
+            <h:inputText id="matricula" value="#{alunoController.alunoToCreate.matricula}" required="true"/>
 
-				<p:selectOneMenu value="#{alunoController.cursoSelecionado}">
-				    <f:selectItem itemLabel="Selecione um curso..." itemValue="" />
-				    <f:selectItems value="#{alunoController.listaCursos}" var="curso" itemLabel="#{curso.nomeCurso}" itemValue="#{alunoController.cursoSelecionado}" />
-				</p:selectOneMenu>
+            <!--  TODO: Temos que verificar se é necessário
+                        utilizar o form completamente em jsf
+                        ou completamente em primefaces!  -->
 
-                <p:commandButton value="Salvar Aluno" actionListener="#{alunoController.createAluno}" update="@form" />
-            </h:panelGrid>
-        </p:panel>        
+            <!--<p:selectOneMenu id="select1menu" value="#{alunoController.cursoSelecionado}" var="c">
+                <f:selectItem itemLabel="Selecione um curso..." itemValue=""/>
+                <f:selectItems value="#{alunoController.listaCursos}"
+                               var="curso"
+                               itemLabel="#{curso.nomeCurso}"
+                               itemValue="#{curso}"/>
+                <p:column>#{c.nomeCurso}</p:column>
+            </p:selectOneMenu>-->
+
+            <h:commandButton value="Salvar Aluno" action="#{alunoController.createAluno}"/>
+        </h:panelGrid>
     </h:form>
 
     <h2>Alunos</h2>
-   
 
-    <p:dataTable value="#{alunoController.pesquisaAlunos}" var="aluno" >
-    
+
+    <p:dataTable value="#{alunoController.pesquisaAlunos}" var="aluno">
+
         <p:column headerText="Aluno: ">
-            <h:outputText value="#{aluno.nome}" />
+            <h:outputText value="#{aluno.nome}"/>
         </p:column>
 
         <p:column headerText="Matricula">
-            <h:outputText value="#{aluno.matricula}" />
+            <h:outputText value="#{aluno.matricula}"/>
         </p:column>
 
         <p:column headerText="Curso:">
             <p:dataTable value="#{aluno.cursos}" var="curso">
                 <p:column>
-                    <h:outputText value="#{curso.nomeCurso}" />
+                    <h:outputText value="#{curso.nomeCurso}"/>
                 </p:column>
-                
+
             </p:dataTable>
         </p:column>
         <p:column headerText="Ações">
-            <p:commandButton type="button" title="Excluir" icon="pi pi-user-minus" styleClass="ui-button-danger" action="#{alunoController.deleteById}"/>
-            <p:commandButton type="button" title="Print" icon="pi pi-user-edit" styleClass="ui-button-warning mr-2" action="#{alunoController.deleteById}"/>
+            <p:commandButton type="button" title="Excluir" icon="pi pi-user-minus" styleClass="ui-button-danger"
+                             action="#{alunoController.deleteById}"/>
+            <p:commandButton type="button" title="Print" icon="pi pi-user-edit" styleClass="ui-button-warning mr-2"
+                             action="#{alunoController.deleteById}"/>
         </p:column>
     </p:dataTable>
 </h:body>
